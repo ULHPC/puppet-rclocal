@@ -15,7 +15,7 @@
 
 include 'rclocal::params'
 
-$names = ["ensure", "rc_localconf", "rc_localconf_mode", "rc_localconf_owner", "rc_localconf_group"]
+$names = ['ensure', 'rc_localconf', 'rc_localconf_mode', 'rc_localconf_owner', 'rc_localconf_group']
 
 notice("rclocal::params::ensure = ${rclocal::params::ensure}")
 notice("rclocal::params::rc_localconf = ${rclocal::params::rc_localconf}")

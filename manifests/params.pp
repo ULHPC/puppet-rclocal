@@ -30,10 +30,7 @@ class rclocal::params {
     ###########################################
 
     # ensure the presence (or absence) of rclocal
-    $ensure = $::rclocal_ensure ? {
-        ''      => 'present',
-        default => $::rclocal_ensure
-    }
+    $ensure = 'present'
 
     #### MODULE INTERNAL VARIABLES  #########
     # (Modify to adapt to unsupported OSes)
@@ -54,4 +51,3 @@ class rclocal::params {
     }
 
 }
-
