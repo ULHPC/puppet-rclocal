@@ -76,7 +76,6 @@ define rclocal::update(
   }
 
   concat::fragment { "${rclocal::params::rc_localconf} ${entryname}":
-        ensure  => $ensure,
         target  => $rclocal::params::rc_localconf,
         order   => $order,
         content => $real_content,
