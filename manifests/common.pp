@@ -13,13 +13,13 @@
 class rclocal::common {
 
     # Load the variables used in this module. Check the params.pp file
-    require rclocal::params
+    require ::rclocal::params
 
     concat { $rclocal::params::rc_localconf:
         warn  => false,
         mode  => $rclocal::params::rc_localconf_mode,
         owner => $rclocal::params::rc_localconf_owner,
-        group => $rclocal::params::rc_localconf_group
+        group => $rclocal::params::rc_localconf_group,
     }
 
     # Header of the /etc/rc.local file
@@ -31,7 +31,7 @@ class rclocal::common {
     concat::fragment { "${rclocal::params::rc_localconf}_header":
         target => $rclocal::params::rc_localconf,
         source => "puppet:///modules/rclocal/etc/${rc_local_header}",
-        order  => 01,
+        order  => '01',
     }
 
 }
