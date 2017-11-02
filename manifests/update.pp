@@ -50,7 +50,7 @@ define rclocal::update(
     $order          = '50'
 )
 {
-  include rclocal::params
+  include ::rclocal::params
 
   # $name is provided by define invocation
   $entryname = $name
@@ -76,11 +76,10 @@ define rclocal::update(
   }
 
   concat::fragment { "${rclocal::params::rc_localconf} ${entryname}":
-        ensure  => $ensure,
         target  => $rclocal::params::rc_localconf,
         order   => $order,
         content => $real_content,
-        source  => $real_source
+        source  => $real_source,
   }
 }
 
