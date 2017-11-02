@@ -4,12 +4,12 @@
 
 [![Puppet Forge](http://img.shields.io/puppetforge/v/ULHPC/rclocal.svg)](https://forge.puppetlabs.com/ULHPC/rclocal)
 [![License](http://img.shields.io/:license-GPL3.0-blue.svg)](LICENSE)
-![Supported Platforms](http://img.shields.io/badge/platform-debian-lightgrey.svg)
+![Supported Platforms](http://img.shields.io/badge/platform-debian|centos-lightgrey.svg)
 [![Documentation Status](https://readthedocs.org/projects/ulhpc-puppet-rclocal/badge/?version=latest)](https://readthedocs.org/projects/ulhpc-puppet-rclocal/?badge=latest)
 
 Configure the rc.local file
 
-      Copyright (c) 2016 S. Varrette, H. Cartiaux, V. Plugaru, S. Diehl aka. UL HPC Management Team <hpc-sysadmins@uni.lu>
+      Copyright (c) 2017 UL HPC Team <hpc-sysadmins@uni.lu>
       
 
 | [Project Page](https://github.com/ULHPC/puppet-rclocal) | [Sources](https://github.com/ULHPC/puppet-rclocal) | [Documentation](https://ulhpc-puppet-rclocal.readthedocs.org/en/latest/) | [Issues](https://github.com/ULHPC/puppet-rclocal/issues) |
@@ -21,8 +21,16 @@ Configure the rc.local file.
 This module implements the following elements: 
 
 * __Puppet classes__:
+    - `rclocal` 
+    - `rclocal::common` 
+    - `rclocal::common::debian` 
+    - `rclocal::common::redhat` 
+    - `rclocal::debian` 
+    - `rclocal::params` 
+    - `rclocal::redhat` 
 
 * __Puppet definitions__: 
+    - `rclocal::update` 
 
 All these components are configured through a set of variables you will find in
 [`manifests/params.pp`](manifests/params.pp). 
@@ -35,6 +43,7 @@ See `docs/contributing.md` for more details on the steps you shall follow to hav
 See [`metadata.json`](metadata.json). In particular, this module depends on 
 
 * [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)
+* [puppetlabs/concat](https://forge.puppetlabs.com/puppetlabs/concat)
 
 ## Overview and Usage
 
@@ -51,6 +60,28 @@ Use it as follows:
 
 See also [`tests/init.pp`](tests/init.pp)
 
+
+### Definition `rclocal::update`
+
+The definition `rclocal::update` provides ...
+This definition accepts the following parameters:
+
+* `$ensure`: default to 'present', can be 'absent'
+* `$content`: specify the contents of the directive as a string
+* `$source`: copy a file as the content of the directive.
+
+Example:
+
+        rclocal::update{ 'do_something_in_rc_local':
+          content => "echo noop /etc/some_file\n"
+        }
+
+        rclocal::update{ 'do_something_in_rc_local':
+          source => 'module_name/path/to/file',
+          order  => '51',
+        }
+
+See also [`tests/init.pp`](tests/init.pp)
 
 
 ## Librarian-Puppet / R10K Setup
@@ -94,3 +125,6 @@ See [`docs/rtfd.md`](rtfd.md) for more details.
 ## Licence
 
 This project and the sources proposed within this repository are released under the terms of the [GPL-3.0](LICENCE) licence.
+
+
+[![Licence](https://www.gnu.org/graphics/gplv3-88x31.png)](LICENSE)
