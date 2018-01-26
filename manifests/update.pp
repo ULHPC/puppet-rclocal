@@ -59,20 +59,17 @@ define rclocal::update(
       fail("rclocal::update 'ensure' parameter must be set to either 'absent', or 'present'")
   }
 
-  $real_content = $content ? {
-      '' => undef,
-      default => $source ? {
-          ''      => $content,
-          default => undef
+  # if content is passed, use that, else if source is passed use that
+  case $content {
+      '': {
+          case $source {
+              '': {
+                  crit('No content nor source have been specified')
+              }
+              default: { $real_source = $source }
+          }
       }
-  }
-
-  $real_source = $source ? {
-      '' => undef,
-      default => $content ? {
-          ''      => $source,
-          default => undef
-      }
+      default: { $real_content = "${content}\n" }
   }
 
   concat::fragment { "${rclocal::params::rc_localconf} ${entryname}":
