@@ -51,7 +51,7 @@ class rclocal(
 
     case $::operatingsystem {
         'debian', 'ubuntu':         { include ::rclocal::debian }
-        'redhat', 'fedora', 'centos': { include ::rclocal::redhat }
+        'redhat', 'fedora', 'centos', 'Amazon': { include ::rclocal::redhat }
         default: {
             fail("Module ${module_name} is not supported on $::{operatingsystem}")
         }
