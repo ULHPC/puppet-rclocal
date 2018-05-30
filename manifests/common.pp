@@ -25,7 +25,7 @@ class rclocal::common {
     # Header of the /etc/rc.local file
     $rc_local_header = $::operatingsystem ? {
         /(?i-mx:ubuntu|debian)/ => 'rc.local.debian_header',
-        /(?i-mx:redhat|centos|Amazon)/ => 'rc.local.redhat_header'
+        /(?i-mx:redhat|centos|amazon)/ => 'rc.local.redhat_header'
     }
 
     concat::fragment { "${rclocal::params::rc_localconf}_header":
