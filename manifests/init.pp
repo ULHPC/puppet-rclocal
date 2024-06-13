@@ -49,11 +49,11 @@ class rclocal(
         fail("rclocal 'ensure' parameter must be set to either 'absent' or 'present'")
     }
 
-    case $::operatingsystem {
+    case $facts['os']['name'] {
         'debian', 'ubuntu':         { include ::rclocal::debian }
         'redhat', 'fedora', 'centos', 'Amazon': { include ::rclocal::redhat }
         default: {
-            fail("Module ${module_name} is not supported on $::{operatingsystem}")
+            fail("Module ${module_name} is not supported on ${facts['os']['name']}")
         }
     }
 }

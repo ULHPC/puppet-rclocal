@@ -23,7 +23,7 @@ class rclocal::common {
     }
 
     # Header of the /etc/rc.local file
-    $rc_local_header = $::operatingsystem ? {
+    $rc_local_header = $facts['os']['name'] ? {
         /(?i-mx:ubuntu|debian)/ => 'rc.local.debian_header',
         /(?i-mx:redhat|centos|amazon)/ => 'rc.local.redhat_header'
     }
