@@ -23,7 +23,7 @@ node default {
         content => "
 # Print a message on start
 echo UPDATED rc.conf executing!
-"
+",
     }
 
 }
