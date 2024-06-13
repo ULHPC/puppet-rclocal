@@ -36,17 +36,17 @@ class rclocal::params {
     # (Modify to adapt to unsupported OSes)
     #######################################
     # The /etc/rc.local file
-    $rc_localconf = $::operatingsystem ? {
+    $rc_localconf = $facts['os']['name'] ? {
         /(?i-mx:redhat|centos|fedora)/ => '/etc/rc.d/rc.local',
         default => '/etc/rc.local'
     }
-    $rc_localconf_mode = $::operatingsystem ? {
+    $rc_localconf_mode = $facts['os']['name'] ? {
         default => '0755',
     }
-    $rc_localconf_owner = $::operatingsystem ? {
+    $rc_localconf_owner = $facts['os']['name'] ? {
         default => 'root',
     }
-    $rc_localconf_group = $::operatingsystem ? {
+    $rc_localconf_group = $facts['os']['name'] ? {
         default => 'root',
     }
 
